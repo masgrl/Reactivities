@@ -33,10 +33,11 @@ namespace API
             {
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
             });
-            // services.AddCors(options => 
-            // {
-            //     options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-            // });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", policy =>
+                 policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,9 +53,10 @@ namespace API
                 // app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();
+            //app.UseHttpsRedirection(); Use in correct order
+            app.UseCors("CorsPolicy");
             app.UseMvc();
-            //app.UseCors();
+            
         }
     }
 }

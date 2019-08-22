@@ -24,7 +24,7 @@ namespace Persistence
                 },
                 new Value{
                     Id =3 ,
-                    Name ="Value 103"
+                    Name ="Value 105"
                 }
             );
         }
